@@ -1,3 +1,7 @@
-const express = './infra/ports/express';
+import 'dotenv/config'
 
-require(express)
+const express = './infra/ports/express'
+const fastify = './infra/ports/fastify'
+const server = process.env.SERVER_TYPE === 'fastify' ? fastify : express
+
+require(server)
