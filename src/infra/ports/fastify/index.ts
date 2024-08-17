@@ -1,7 +1,11 @@
 import 'dotenv/config';
 import fastify from 'fastify';
 
+import { signUpRouter } from 'infra/routes/fastify';
+
 const server = fastify({ logger:true });
+
+server.register(signUpRouter, {prefix: 'v1'} );
 
 const app = async () => {
     try {
