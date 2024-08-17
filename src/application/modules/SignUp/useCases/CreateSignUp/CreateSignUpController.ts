@@ -1,21 +1,20 @@
-import { Response, Request } from "express";
+import { FastifyRequest, FastifyReply } from "fastify";
 import { CreateSignUpUseCase } from "./CreateSignUpUseCase";
 
 interface ICreateSignUpDTO {
-    name: string;
-    password: string;
+  name: string;
+  password: string;
 }
 
-export class CreateSignUpController{
-    constructor(private readonly useCase: CreateSignUpUseCase){}
-    
-    async handle(req: Request, res: Response): Promise <Response> {
-        const { name,password } = req.body as ICreateSignUpDTO;
+export class CreateSignUpController {
+  constructor(private readonly useCase: CreateSignUpUseCase) {}
 
-        const data = { name, password };
+  async handle(req: FastifyRequest, res: FastifyReply): Promise<Response> {
+    const { name, password } = req.body as ICreateSignUpDTO;
 
-        await this.useCase.execute(data);
+    const data = { name, password };
+    await this.useCase.execute(data);
 
-        return res.status(201).send({ message: 'User created sucessfully' });
-    }
+    return res.status(201).send({ message: "User created successfully" });
+  }
 }
