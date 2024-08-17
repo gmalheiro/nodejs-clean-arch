@@ -1,6 +1,6 @@
-import 'dotenv/config'
-import express from 'express'
-import { router } from 'infra/routes';
+import 'dotenv/config';
+import express from 'express';
+import { router } from 'infra/routes/express';
 
 const PORT = 5001;
 
